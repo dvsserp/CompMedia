@@ -10,6 +10,15 @@ def draw():
     circle(150,150,100)
     fill(0,205,0)
     circle(150,250,100)
+    if(collidePointCircle(mouse_x, mouse_y, 150, 50, 100)):
+       fill(255,0,0)
+       circle(150,50,100)
+    if(collidePointCircle(mouse_x, mouse_y, 150,150,100)):
+        fill(255,255,0)
+        circle(150,150,100)
+    if(collidePointCircle(mouse_x, mouse_y, 150,250,100)):
+        fill(0,255,0)
+        circle(150,250,100)
 
 
 def collidePointCircle(pointX, pointY, circX, circY, diameter):
