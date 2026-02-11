@@ -1,6 +1,6 @@
 color1 = {}
 def setup():
-    size(800,800)
+    size(900,800)
     global color1
     color1 = {
         "red" : 0,
@@ -19,10 +19,26 @@ def draw():
     for i in color1:
         fill(color1[i], 100, 100)
         square(n, 700, 50)
-        n += 90
-        if collidePointRect(mouse_x, mouse_y, n, 700, 50, 50) and is_mouse_pressed:
-            fill(color1[i], 100, 100)
+        n += 100
+    c = 0
+    if collidePointRect(mouse_x, mouse_y, 50, 700, 50,50) and is_mouse_pressed:
+        c = color(color1["red"], 100, 100)
+    elif collidePointRect(mouse_x, mouse_y, 150, 700, 50,50) and is_mouse_pressed:
+        c = color(color1["orange"], 100, 100)
+    elif collidePointRect(mouse_x, mouse_y, 250, 700, 50,50) and is_mouse_pressed:
+        c = color(color1["yellow"], 100, 100)
+    elif collidePointRect(mouse_x, mouse_y, 350, 700, 50,50) and is_mouse_pressed:
+        c = color(color1["green"], 100, 100)
+    elif collidePointRect(mouse_x, mouse_y, 450, 700, 50,50) and is_mouse_pressed:
+        c = color(color1["cyan"], 100, 100)
+    elif collidePointRect(mouse_x, mouse_y, 550, 700, 50,50) and is_mouse_pressed:
+        c = color(color1["blue"], 100, 100)
+    elif collidePointRect(mouse_x, mouse_y, 650, 700, 50,50) and is_mouse_pressed:
+        c = color(color1["purple"], 100, 100)
+    elif collidePointRect(mouse_x, mouse_y, 750, 700, 50,50) and is_mouse_pressed:
+        c = color(color1["pink"], 100, 100)
     if is_mouse_pressed:
+        fill(c)
         line(mouse_x, mouse_y, pmouse_x, pmouse_y)
             
 def collidePointRect(pX, pY, rX, rY, rW, rH):
