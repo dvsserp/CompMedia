@@ -6,7 +6,7 @@ def setup():
     lineDict = {
         "randOpacity": 150,
         "randWeight": 50,
-        "weight": 3,
+        "weight": 10,
         "blue" : 255,
         "red": 255,
         "green": 255,
