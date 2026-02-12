@@ -1,6 +1,8 @@
 color1 = {}
+mode1 = "draw"
 c = 0
 s = 1
+
 def setup():
     size(900,800)
     global color1
@@ -14,11 +16,56 @@ def setup():
         "purple" : 270,
         "pink" : 300
         }
+        
     background(255,255,255)
+    color_mode(HSB,360,100,100)
+    stroke_weight(1)
+    fill(0,0,100)
+    rect(390,40,80,20)
+    rect(190,40,80,20)
+    fill(0,0,0)
+    text("color: black", 400, 50)
+    text("mode: draw", 200, 50)
+    stroke_weight(s)
 def draw():
     global c
     global s
+    global mode1
     color_mode(HSB, 360, 100, 100)
+    
+    #display the size
+    stroke_weight(1)
+    fill(0,0,100)
+    stroke(0)
+    rect(290,40,80,20)
+    stroke(c)
+    fill(0,0,0)
+    text("size: " + str(s), 300, 50)
+    stroke_weight(s)
+    
+    if mode1 == "erase":
+        stroke_weight(1)
+        fill(0,0,100)
+        stroke(0)
+        rect(390,40,80,20)
+        rect(190,40,80,20)
+        stroke(c)
+        fill(0,0,0)
+        text("mode: eraser", 200, 50)
+        text("color: white", 400, 50)
+        stroke_weight(s)
+        
+    if mode1 == "draw":
+        stroke_weight(1)
+        fill(0,0,100)
+        stroke(0)
+        rect(390,40,80,20)
+        rect(190,40,80,20)
+        stroke(c)
+        fill(0,0,0)
+        text("color: black", 400, 50)
+        text("mode: draw", 200, 50) 
+        stroke_weight(s)
     #create paint palette
     n = 50
     for i in color1:
@@ -37,38 +84,14 @@ def draw():
     #changing size and adding eraser when key pressed
     if is_key_pressed:
         if key == 'w':
-            stroke_weight(1)
-            fill(0,0,100)
-            rect(290,40,80,20)
-            fill(0,0,0)
-            text("size: " + str(s), 300, 50)
-            stroke_weight(s)
             s += 0.5
         if key == 'q' and s > 0.5:
-            stroke_weight(1)
-            fill(0,0,100)
-            rect(290,40,80,20)
-            fill(0,0,0)
-            text("size: " + str(s), 300, 50)
-            stroke_weight(s)
             s -= 0.5
         if key == 'e':
-            stroke_weight(1)
-            fill(0,0,100)
-            rect(190,40,80,20)
-            fill(0,0,0)
-            text("mode: eraser", 200, 50)
-            stroke_weight(s)
+            mode1 = "erase"
             c = 360
         if key == 'r':
-            stroke_weight(1)
-            fill(0,0,100)
-            rect(390,40,80,20)
-            rect(190,40,80,20)
-            fill(0,0,0)
-            text("color: black", 400, 50)
-            text("mode: draw", 200, 50)
-            stroke_weight(s)
+            mode1 = "draw"
             c = 0
         if key == 'c':
             background(0,0,100)
