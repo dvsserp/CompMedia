@@ -36,7 +36,7 @@ def draw():
             
     #changing size and adding eraser when key pressed
     if is_key_pressed:
-        if key == 's':
+        if key == 'w':
             stroke_weight(1)
             fill(0,0,100)
             rect(290,40,80,20)
@@ -44,28 +44,48 @@ def draw():
             text("size: " + str(s), 300, 50)
             stroke_weight(s)
             s += 0.5
+        if key == 'q' and s > 0.5:
+            stroke_weight(1)
+            fill(0,0,100)
+            rect(290,40,80,20)
+            fill(0,0,0)
+            text("size: " + str(s), 300, 50)
+            stroke_weight(s)
+            s -= 0.5
         if key == 'e':
+            stroke_weight(1)
+            fill(0,0,100)
+            rect(190,40,80,20)
+            fill(0,0,0)
+            text("mode: eraser", 200, 50)
+            stroke_weight(s)
             c = 360
-        if key == 'b':
+        if key == 'r':
             stroke_weight(1)
             fill(0,0,100)
             rect(390,40,80,20)
+            rect(190,40,80,20)
             fill(0,0,0)
             text("color: black", 400, 50)
+            text("mode: draw", 200, 50)
             stroke_weight(s)
             c = 0
-
+        if key == 'c':
+            background(0,0,100)
 #changing color when mouse is clicked depending on which square
 def mouse_pressed():
     global c
+    global s
     x = 50
     for name in color1:
         if(collidePointRect(mouse_x, mouse_y, x, 700,50,50)):
            c = color(color1[name],100,100)
+           stroke_weight(1)
            fill(0,0,100)
            rect(390,40,80,20)
            fill(0,0,0)
            text("color: " + str(name), 400, 50)
+           stroke_weight(s)
         x += 100
         
 def collidePointRect(pX, pY, rX, rY, rW, rH):
