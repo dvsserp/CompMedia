@@ -37,6 +37,7 @@ def draw():
     #changing size and adding eraser when key pressed
     if is_key_pressed:
         if key == 's':
+            #display size
             stroke_weight(1)
             fill(0,0,100)
             rect(290,40,80,20)
@@ -47,6 +48,7 @@ def draw():
         if key == 'e':
             c = 360
         if key == 'b':
+            #displays black when reset
             stroke_weight(1)
             fill(0,0,100)
             rect(390,40,80,20)
@@ -61,6 +63,7 @@ def mouse_pressed():
     x = 50
     for name in color1:
         if(collidePointRect(mouse_x, mouse_y, x, 700,50,50)):
+            #display which color
            c = color(color1[name],100,100)
            fill(0,0,100)
            rect(390,40,80,20)
