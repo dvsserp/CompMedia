@@ -110,7 +110,7 @@ def mouse_pressed():
            text("color: " + str(name), 400, 50)
            stroke_weight(s)
         x += 100
-        
+      
 def collidePointRect(pX, pY, rX, rY, rW, rH):
   """Input x,y coordinates of point and x, y, width, and height of rectangle.
   Returns true if the point and rectangle are touching."""
