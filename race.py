@@ -7,7 +7,7 @@ def setup():
         inRace[i] = {
             "x" : 0,
             "y" : 100 * (i+1),
-            "speed" : int(random(1,10)),
+            "speed" : int(random(4,10)),
             "lap" : 0,
             "number" : i + 1
             }
@@ -22,7 +22,7 @@ def draw():
         inRace[i]["x"] += inRace[i]["speed"]
         if inRace[i]["x"] > width:
             inRace[i]["x"] = 0
-            inRace[i]["speed"] = int(random(1,10))
+            inRace[i]["speed"] = int(random(4,10))
             inRace[i]["lap"] += 1
         if inRace[i]["lap"] == 3:
             frame_rate(0)
