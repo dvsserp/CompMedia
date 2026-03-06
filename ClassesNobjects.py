@@ -18,14 +18,15 @@
 #1. Create a class called Student that has two attributes: a name, and a grade.
 
 class Student:
-    def __init__(self,theName,theGrade):
+    def __init__(self,theName,theGrade,saving):
         self.name = theName
         self.grade = theGrade
+        self.savings_account = saving
 
 # Now create instances of three different students (student1, student2, and student3).
-student1 = Student("Tom", 11)
-student2 = Student("John", 12)
-student3 = Student("Bob", 10)
+student1 = Student("Tom", 11, 10000)
+student2 = Student("John", 12, 100000000000)
+student3 = Student("Bob", 10, 1)
 
 
 #Confirm that the class works by printing out the first student's name.
@@ -43,7 +44,6 @@ class School:
         self.name = theName
         self.type = theType
         self.size = theSize
-        
 
 #Create instances of three individual schools.
 
@@ -106,4 +106,10 @@ for school in schools:
 
 
 #Write some code that compares a student and a house, and determines whether or not
-#the student can afford to buy the house. 
+#the student can afford to buy the house.
+for student in my_students:
+    for house in houses:
+        if student.savings_account < house.price :
+            print(student.name, "cannot afford the house at" , house.address)
+        else:
+            print(student.name, "can afford the house at" , house.address)
