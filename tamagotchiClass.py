@@ -6,13 +6,14 @@ class Tamagotchi:
         self.hunger = 0
         self.age = 0
         self.size = 100
-        self.x = random(width)
-        self.y = random(height)
+        self.x = random(50, width - 50)
+        self.y = random(50, height - 50)
         self.color = color(random(255), random(255), random(255))
         self.xSpeed = random(-2,2)
         self.ySpeed = random(-2,2)
     
     def display(self):
+        text(self.name, self.x, self.y)
         circle(self.x, self.y, self.size)
         
     def move(self):
@@ -22,16 +23,22 @@ class Tamagotchi:
     def bounce(self):
         if(self.x < (0 + self.size/2) or self.x > (width - self.size/2)):
             self.health -= 2
-            self.xSpeed *= -1
+            self.xSpeed *= int(random(-2,-1))
         if(self.y < (0 + self.size/2) or self.y > (height- self.size/2)):
             self.health -= 2
-            self.ySpeed *= -1
+            self.ySpeed *= int(random(-2,-1))
         
     def feed(self):
         self.hunger -= 3
         if(self.hunger < 0):
             self.hunger = 0
         self.size += 1
+        
+    def displayUI(self):
+        text(str(self.health), 20,20)
+        text(str(self.hunger), 20,40)
+        rect(width/2 - 50, height - 40,  50, 30)
+        rect(width/2 + 50, height - 40,  50, 30)
         
     def heal(self):
         self.health += 3

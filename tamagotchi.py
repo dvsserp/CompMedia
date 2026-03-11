@@ -10,3 +10,4 @@ def draw():
     tamagotchi1.display()
     tamagotchi1.move()
     tamagotchi1.bounce()
+    tamagotchi1.displayUI()
