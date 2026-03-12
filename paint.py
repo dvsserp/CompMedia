@@ -168,7 +168,6 @@ def viewKey():
     global keybind
     global c
     global s
-<<<<<<< HEAD
     x = 50
     for name in color1:
         if(collidePointRect(mouse_x, mouse_y, x, 700,50,50)):
@@ -180,8 +179,7 @@ def viewKey():
            text("color: " + str(name), 400, 50)
            stroke_weight(s)
         x += 100
-      
-=======
+
     #add keybinds to view
     y = 100
     for i in keybind:
@@ -195,7 +193,6 @@ def viewKey():
         y += 30
         stroke(c)
         stroke_weight(s)
->>>>>>> 6ff3bc068cca0d9c0b3588514d5475c46e77ee50
 def collidePointRect(pX, pY, rX, rY, rW, rH):
   """Input x,y coordinates of point and x, y, width, and height of rectangle.
   Returns true if the point and rectangle are touching."""
