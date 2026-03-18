@@ -1,15 +1,36 @@
 angle = 0
 
 def setup():
-    size(400,400)
+    size(800, 800)
     
 def draw():
     global angle
-    background(220)
-    translate(100,100)
-    rotate(angle)
-    triangle(20,20,100,20,10,30)
-    ellipse(20,100,20,10)
-    rect(150,20,90,50)
-    angle+=0.1
+    background(0)
+    noFill()
+    strokeWeight(2)
+    
+    for i in range(20):
+        pushMatrix()
+        translate(random(width), random(height))
+        rotate(angle + random(TWO_PI))
+        scale(random(0.5, 2.0))
+        
+        # Random color
+        stroke(random(255), random(255), random(255))
+        
+        # Random shape
+        shape_type = int(random(4))
+        if shape_type == 0:
+            ellipse(0, 0, 50, 50)
+        elif shape_type == 1:
+            rect(-25, -25, 50, 50)
+        elif shape_type == 2:
+            triangle(-25, 25, 0, -25, 25, 25)
+        elif shape_type == 3:
+            line(-25, -25, 25, 25)
+            line(25, -25, -25, 25)
+        
+        popMatrix()
+    
+    angle += 0.05
     
