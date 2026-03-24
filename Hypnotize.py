@@ -6,11 +6,11 @@ def setup():
 def draw():
     global angle
     background(0)
-    noFill()
-    strokeWeight(2)
+    no_fill()
+    stroke_weight(2)
     
     for i in range(20):
-        pushMatrix()
+        push_matrix()
         translate(random(width), random(height))
         rotate(angle + random(TWO_PI))
         scale(random(0.5, 2.0))
@@ -30,7 +30,7 @@ def draw():
             line(-25, -25, 25, 25)
             line(25, -25, -25, 25)
         
-        popMatrix()
+        pop_matrix()
     
     angle += 0.05
     
