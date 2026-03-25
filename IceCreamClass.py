@@ -1,8 +1,8 @@
 # PY5 IMPORTED MODE CODE
 class IceCream:
-    def __init__(self, x, y, color, cone, scoops):
-        self.x = x
-        self.y = y
+    def __init__(self, color, cone, scoops):
+        self.x = 0
+        self.y = 0
         self.color = color
         self.cone = cone
         self.scoops = scoops
@@ -19,4 +19,9 @@ class IceCream:
         else:
             rect(self.x-20,self.y+10,40,30)
         
-        
+    def animateText(self, i):
+        no_stroke()
+        #h
+        if(i < 50):
+            circle(self.x - (width/4), self.y + i - (height/2 - 50), 10)
+            i += 5
