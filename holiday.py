@@ -20,6 +20,7 @@ def draw():
     ice1 = IceCream(colors["red"], True, 2)
     ice1.drawIceCream()
     drawHAPPY()
+    drawDAY()
     
 def drawHAPPY():
     global movex, movey
@@ -47,6 +48,24 @@ def drawHAPPY():
         
         #Y
         circle(leftSideHappy + 280 + movex/2, happyHeight + movey/2, 10)
+        circle(leftSideHappy + 330 - movex/2, happyHeight + movey/2, 10)
+        circle(leftSideHappy + 305, happyHeight + 30 + movey/2,10)
     movex += 1
     movey += 1
+
+def drawDAY():
+    global movex,movey
+    leftSideDay = width/2
+    dayHeight = height - height/6
+    if(movey < 50):
+        #A
+        circle(leftSideDay+ movex/2 + 100, dayHeight - movey + 50,10)
+        circle(leftSideDay + movex/2 + 125, dayHeight + movey,10)
+        circle(leftSideDay + movex/2 + 110, dayHeight + 25, 10)
+    
+        #Y
+        circle(leftSideDay + 280 + movex/2, dayHeight + movey/2, 10)
+        circle(leftSideDay + 330 - movex/2, dayHeight + movey/2, 10)
+        circle(leftSideDay + 305, dayHeight + 30 + movey/2,10)
+    
     

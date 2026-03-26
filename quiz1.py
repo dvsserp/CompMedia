@@ -1,0 +1,16 @@
+def setup():
+    size(400,400)
+def draw():
+    background(255)
+    color_mode(RGB,255,255,255)
+    cB = color(0,0,255)
+    fill(cB)
+    color_mode(HSB,360,100,100)
+    cR = color(0,100,100)
+    stroke(cR)
+    stroke_weight(7)
+    rect(150,150,100,100)
+    circle(175,175,20)
+    circle(210,175,20)
+    fill(150,100,100)
+    arc(200,150,50,50,radians(180),radians(360),OPEN)
