@@ -10,6 +10,7 @@ colors = {
     "blue":210,
     "purple":270,
     "pink":300}
+sColor = ["red", "orange", "yellow", "green", "cyan", "blue", "purple", "pink"]
 toppings = ["None","Sprinkles", "Gummies", "Cherry", "Chocolate"] 
 def setup():
     size(1000,1000)
@@ -17,7 +18,7 @@ def setup():
 def draw():
     global colors,toppings
     translate(width/2,height/2)
-    ice1 = IceCream(colors["red"], False, 2, toppings[0])
+    ice1 = IceCream(colors["red"], False, 3, toppings[0])
     ice1.drawIceCream()
     drawDAY()
     drawHAPPY()
@@ -76,13 +77,33 @@ def drawDAY():
         
         
 def Palette():
-    global colors, toppings
+    global colors, toppings, sColor
+    fill(0)
+    text("Toppings", 0, height/2 - 230)
     fill(255)
-    text("Topping", 0, height/2 - 230)
+    cone = ["cone", "no cone"]
+    x = 0
+    y = 0
+    z = 0
     for i in range(0,len(toppings)*200,200):
         rect(-width/2 + i + 60, height/2 - 200, 70,50)
+        fill(0)
+        text(toppings[x], -width/2 + i + 80, height/2 - 175)
+        fill(255)
+        x += 1
     for i in range(0, len(colors)*120,120):
         rect(-width/2 + i + 30, height/2 - 120, 70, 50)
+        fill(0)
+        text(sColor[y], -width/2 + i + 50, height/2 - 100)
+        y+=1
+        fill(255)
+        
+    for i in range(0, 2 * 80, 80):
+        rect(-40 + i, height/2 - 50, 70,50)
+        fill(0)
+        text(cone[z], -30 + i, height/2 - 30)
+        z+=1
+        fill(255)
         
 def collidePointRect(pX, pY, rX, rY, rW, rH):
   """Input x,y coordinates of point and x, y, width, and height of rectangle.
