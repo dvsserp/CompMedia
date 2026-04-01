@@ -19,3 +19,10 @@ class IceCream:
             triangle(self.x-40,self.y+20,self.x+40,self.y+20, self.x, self.y+120)
         else:
             rect(self.x-40,self.y+20,80,60)
+            
+    def drawToppings(self):
+        fill(0)
+        #add spinkles
+        #add chocolate syrup
+        #add gummies
+        #add cherry
