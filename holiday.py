@@ -80,21 +80,21 @@ def drawHAPPY():
     leftSideHappy = -width / 4
     happyHeight = -height / 3
     amt = min(movex, 50)
-    dist = min(movey, 50)
-    circle(leftSideHappy, happyHeight + dist, 10)
-    circle(leftSideHappy + 50, happyHeight + dist, 10)
+    distance = min(movey, 50)
+    circle(leftSideHappy, happyHeight + distance, 10)
+    circle(leftSideHappy + 50, happyHeight + distance, 10)
     circle(leftSideHappy + amt, happyHeight + 25, 10)
-    circle(leftSideHappy + amt / 2 + 100, happyHeight - dist + 50, 10)
-    circle(leftSideHappy + amt / 2 + 125, happyHeight + dist, 10)
+    circle(leftSideHappy + amt / 2 + 100, happyHeight - distance + 50, 10)
+    circle(leftSideHappy + amt / 2 + 125, happyHeight + distance, 10)
     circle(leftSideHappy + amt / 2 + 110, happyHeight + 25, 10)
-    circle(leftSideHappy + 175, happyHeight + dist, 10)
+    circle(leftSideHappy + 175, happyHeight + distance, 10)
     l = remap(amt, 1, 50, 1, 180)
     circle(leftSideHappy + 190 + cos(l) * 15, happyHeight + 15 + sin(l) * 15, 10)
-    circle(leftSideHappy + 240, happyHeight + dist, 10)
+    circle(leftSideHappy + 240, happyHeight + distance, 10)
     circle(leftSideHappy + 255 + cos(l) * 15, happyHeight + 15 + sin(l) * 15, 10)
-    circle(leftSideHappy + 280 + amt / 2, happyHeight + dist / 2, 10)
-    circle(leftSideHappy + 330 - amt / 2, happyHeight + dist / 2, 10)
-    circle(leftSideHappy + 305, happyHeight + 30 + dist / 2, 10)
+    circle(leftSideHappy + 280 + amt / 2, happyHeight + distance / 2, 10)
+    circle(leftSideHappy + 330 - amt / 2, happyHeight + distance / 2, 10)
+    circle(leftSideHappy + 305, happyHeight + 30 + distance / 2, 10)
     if movex < 50:
         movex += 1
     if movey < 50:
@@ -106,14 +106,14 @@ def drawDAY():
     leftSideDay = -width / 5
     dayHeight = height / 8
     amt = min(movex, 50)
-    dist = min(movey, 50)
+    distance = min(movey, 50)
     arc(leftSideDay + 150, dayHeight + 25, 80, 60, radians(270), radians(450), CHORD)
-    circle(leftSideDay + amt / 2 + 200, dayHeight - dist + 50, 10)
-    circle(leftSideDay + amt / 2 + 225, dayHeight + dist, 10)
+    circle(leftSideDay + amt / 2 + 200, dayHeight - distance + 50, 10)
+    circle(leftSideDay + amt / 2 + 225, dayHeight + distance, 10)
     circle(leftSideDay + amt / 2 + 210, dayHeight + 25, 10)
-    circle(leftSideDay + 280 + amt / 2, dayHeight + dist / 2, 10)
-    circle(leftSideDay + 330 - amt / 2, dayHeight + dist / 2, 10)
-    circle(leftSideDay + 305, dayHeight + 30 + dist / 2, 10)
+    circle(leftSideDay + 280 + amt / 2, dayHeight + distance / 2, 10)
+    circle(leftSideDay + 330 - amt / 2, dayHeight + distance / 2, 10)
+    circle(leftSideDay + 305, dayHeight + 30 + distance / 2, 10)
 
 
 def Palette():
