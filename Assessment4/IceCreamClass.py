@@ -37,15 +37,15 @@ class IceCream:
                     circle(self.x + x_offset, scoop_y + 10, 16)
         elif self.toppings == "Cherry":
             fill(345, 100, 100)
-            circle(self.x, self.y - self.scoops * 50 - 35, 18)
+            circle(self.x, self.y - self.scoops * 50, 18)
             fill(120, 100, 80)
             rect(self.x + 5, self.y - self.scoops * 50 - 25, 4, 22)
         elif self.toppings == "Chocolate":
             no_fill()
             stroke(30, 100, 40)
             stroke_weight(8)
-            arc(self.x, self.y - self.scoops * 50 - 15, 120, 60, PI, TWO_PI)
+            arc(self.x, self.y - self.scoops * 50 + 50, 120, 60, PI, TWO_PI)
             stroke_weight(4)
             for x_offset in (-25, 0, 25):
-                line(self.x + x_offset, self.y - self.scoops * 50 - 15, self.x + x_offset, self.y - self.scoops * 50 + 10)
+                line(self.x + x_offset, self.y - self.scoops * 50 + 50, self.x + x_offset, self.y - self.scoops * 50 + 80)
             no_stroke()

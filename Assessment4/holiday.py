@@ -74,7 +74,7 @@ def drawGreeting():
     fill(0)
     text_size(48)
     text_align(CENTER)
-    text("Happy Holidays!", 0, -height / 2 + 80)
+    text("Happy National Icecream Day!", 0, -height / 2 + 80)
     text_size(28)
     text("A sweet gift just for you.", 0, -height / 2 + 130)
     text_size(20)
@@ -86,7 +86,7 @@ def drawAnimatedDecorations():
     """Draw animated snowflakes and decorative elements"""
     global animation_frame
     
-    # Large floating snowflakes with wave motion
+    # large floating snowflakes with wave motion
     fill(180, 100, 100)  # Cyan color
     no_stroke()
     snowflake_positions = [
@@ -101,13 +101,13 @@ def drawAnimatedDecorations():
     ]
     
     for sx, sy in snowflake_positions:
-        # Wave motion for snowflakes
+        # wave motion for snowflakes
         offset_x = 25 * sin(animation_frame * 0.03 + sx * 0.005)
         offset_y = 15 * cos(animation_frame * 0.04 + sy * 0.005)
         scale1 = 1.0 + 0.3 * sin(animation_frame * 0.05)
         circle(sx + offset_x, sy + offset_y, 12 * scale1)
     
-    # Pulsing button effect
+    # button effect
     pulse = 1.0 + 0.1 * sin(animation_frame * 0.06)
     for i in range(len(toppings)):
         x = -width / 2 + i * 180 + 60 + 30
