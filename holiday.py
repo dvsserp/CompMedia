@@ -1,7 +1,6 @@
 from IceCreamClass import *
 
-movex = 0
-movey = 0
+animation_frame = 0
 colors = {
     "red": 0,
     "orange": 30,
@@ -27,21 +26,28 @@ def setup():
     color_mode(HSB, 360, 100, 100)
     ice = IceCream(colors[sColor[selected_color]], True, 3, toppings[selected_topping])
     ice.x = 0
-    ice.y = 120
+    ice.y = -80
 
 
 def draw():
-    global ice
+    global ice, animation_frame
     background(210, 30, 100)
     translate(width / 2, height / 2)
     drawCardFrame()
+    drawGreeting()
+    
+    # Animated bouncing ice cream
     updateIceCream()
+    bounce = 20 * abs(sin(animation_frame * 0.08))
+    push_matrix()
+    translate(0, bounce)
     ice.drawIceCream()
     ice.drawToppings()
-    drawGreeting()
-    drawHAPPY()
-    drawDAY()
+    pop_matrix()
+    
+    drawAnimatedDecorations()
     Palette()
+    animation_frame += 1
 
 
 def updateIceCream():
@@ -66,113 +72,139 @@ def drawCardFrame():
 
 def drawGreeting():
     fill(0)
-    text_size(54)
-    text("Happy Holidays!", -200, -height / 2 + 120)
+    text_size(48)
+    text_align(CENTER)
+    text("Happy Holidays!", 0, -height / 2 + 80)
     text_size(28)
-    text("A sweet gift just for you.", -200, -height / 2 + 170)
-    text_size(24)
-    text("Select a color, topping, and cone style below.", -200, -height / 2 + 210)
-    text("From: Your Holiday Helper", -200, height / 2 - 70)
+    text("A sweet gift just for you.", 0, -height / 2 + 130)
+    text_size(20)
+    text("Select your ice cream below", 0, height / 2 - 100)
+    text_align(LEFT)
 
 
-def drawHAPPY():
-    global movex, movey
-    leftSideHappy = -width / 4
-    happyHeight = -height / 3
-    amt = min(movex, 50)
-    dist = min(movey, 50)
-    circle(leftSideHappy, happyHeight + dist, 10)
-    circle(leftSideHappy + 50, happyHeight + dist, 10)
-    circle(leftSideHappy + amt, happyHeight + 25, 10)
-    circle(leftSideHappy + amt / 2 + 100, happyHeight - dist + 50, 10)
-    circle(leftSideHappy + amt / 2 + 125, happyHeight + dist, 10)
-    circle(leftSideHappy + amt / 2 + 110, happyHeight + 25, 10)
-    circle(leftSideHappy + 175, happyHeight + dist, 10)
-    l = remap(amt, 1, 50, 1, 180)
-    circle(leftSideHappy + 190 + cos(l) * 15, happyHeight + 15 + sin(l) * 15, 10)
-    circle(leftSideHappy + 240, happyHeight + dist, 10)
-    circle(leftSideHappy + 255 + cos(l) * 15, happyHeight + 15 + sin(l) * 15, 10)
-    circle(leftSideHappy + 280 + amt / 2, happyHeight + dist / 2, 10)
-    circle(leftSideHappy + 330 - amt / 2, happyHeight + dist / 2, 10)
-    circle(leftSideHappy + 305, happyHeight + 30 + dist / 2, 10)
-    if movex < 50:
-        movex += 1
-    if movey < 50:
-        movey += 1
+def drawAnimatedDecorations():
+    """Draw animated snowflakes and decorative elements"""
+    global animation_frame
+    
+    # Large floating snowflakes with wave motion
+    fill(180, 100, 100)  # Cyan color
+    no_stroke()
+    snowflake_positions = [
+        (-350, -300),
+        (350, -250),
+        (-300, 0),
+        (300, 80),
+        (-200, -150),
+        (200, -350),
+        (-280, 150),
+        (280, -100)
+    ]
+    
+    for sx, sy in snowflake_positions:
+        # Wave motion for snowflakes
+        offset_x = 25 * sin(animation_frame * 0.03 + sx * 0.005)
+        offset_y = 15 * cos(animation_frame * 0.04 + sy * 0.005)
+        scale1 = 1.0 + 0.3 * sin(animation_frame * 0.05)
+        circle(sx + offset_x, sy + offset_y, 12 * scale1)
+    
+    # Pulsing button effect
+    pulse = 1.0 + 0.1 * sin(animation_frame * 0.06)
+    for i in range(len(toppings)):
+        x = -width / 2 + i * 180 + 60 + 30
+        y = height / 2 - 190 + 17.5
+        push_matrix()
+        translate(x, y)
+        scale(pulse)
+        translate(-x, -y)
+        no_stroke()
+        fill(255, 255, 255, 20)
+        rect(x - 30, y - 17.5, 60, 35, 8)
+        pop_matrix()
 
 
-def drawDAY():
-    global movex, movey
-    leftSideDay = -width / 5
-    dayHeight = height / 8
-    amt = min(movex, 50)
-    dist = min(movey, 50)
-    arc(leftSideDay + 150, dayHeight + 25, 80, 60, radians(270), radians(450), CHORD)
-    circle(leftSideDay + amt / 2 + 200, dayHeight - dist + 50, 10)
-    circle(leftSideDay + amt / 2 + 225, dayHeight + dist, 10)
-    circle(leftSideDay + amt / 2 + 210, dayHeight + 25, 10)
-    circle(leftSideDay + 280 + amt / 2, dayHeight + dist / 2, 10)
-    circle(leftSideDay + 330 - amt / 2, dayHeight + dist / 2, 10)
-    circle(leftSideDay + 305, dayHeight + 30 + dist / 2, 10)
+
 
 
 def Palette():
     global colors, toppings, sColor, selected_color, selected_topping, selected_cone
+    no_stroke()
     fill(0)
-    text_size(24)
-    text("Toppings", -width / 2 + 60, height / 2 - 240)
-    text("Colors", -width / 2 + 30, height / 2 - 160)
-    text("Cone", -40, height / 2 - 90)
+    text_size(18)
+    text_align(LEFT)
+    
+    # Toppings palette
+    text("Toppings:", -width / 2 + 60, height / 2 - 220)
     for i in range(len(toppings)):
-        x = -width / 2 + i * 200 + 60
+        x = -width / 2 + i * 180 + 60
+        y = height / 2 - 190
         if selected_topping == i:
             stroke(0)
-            stroke_weight(4)
+            stroke_weight(3)
         else:
             no_stroke()
         fill(255)
-        rect(x, height / 2 - 200, 70, 50, 12)
+        rect(x, y, 60, 35, 8)
         no_stroke()
         fill(0)
-        text(toppings[i], x + 10, height / 2 - 175)
+        text_size(14)
+        text(toppings[i], x + 8, y + 24)
+    
+    # Colors palette
+    text("Colors:", -width / 2 + 60, height / 2 - 110)
     for i in range(len(sColor)):
-        x = -width / 2 + i * 120 + 30
+        x = -width / 2 + (i % 4) * 130 + 60
+        y = height / 2 - 80 if i < 4 else height / 2 - 35
         if selected_color == i:
             stroke(0)
-            stroke_weight(4)
+            stroke_weight(3)
         else:
             no_stroke()
         fill(colors[sColor[i]], 100, 100)
-        rect(x, height / 2 - 120, 70, 50, 12)
+        rect(x, y, 60, 35, 8)
         no_stroke()
         fill(0)
-        text(sColor[i], x + 10, height / 2 - 95)
+        text_size(12)
+        text(sColor[i], x + 5, y + 23)
+    
+    # Cone options
+    text("Cone:", -width / 2 + 60, height / 2 + 40)
     for i in range(2):
-        x = -40 + i * 80
+        x = -width / 2 + i * 120 + 60
         if selected_cone == i:
             stroke(0)
-            stroke_weight(4)
+            stroke_weight(3)
         else:
             no_stroke()
         fill(255)
-        rect(x, height / 2 - 50, 70, 50, 12)
+        rect(x, height / 2 + 55, 60, 35, 8)
         no_stroke()
         fill(0)
-        text(cone_options[i], x + 5, height / 2 - 25)
+        text_size(14)
+        text(cone_options[i], x + 3, height / 2 + 75)
 
 
 def mouse_pressed():
     global selected_color, selected_topping, selected_cone
     mx = mouse_x - width / 2
     my = mouse_y - height / 2
+    
+    # Check toppings
     for i in range(len(toppings)):
-        if collidePointRect(mx, my, -width / 2 + i * 200 + 60, height / 2 - 200, 70, 50):
+        x = -width / 2 + i * 180 + 60
+        if collidePointRect(mx, my, x, height / 2 - 190, 60, 35):
             selected_topping = i
+    
+    # Check colors
     for i in range(len(sColor)):
-        if collidePointRect(mx, my, -width / 2 + i * 120 + 30, height / 2 - 120, 70, 50):
+        x = -width / 2 + (i % 4) * 130 + 60
+        y = height / 2 - 80 if i < 4 else height / 2 - 35
+        if collidePointRect(mx, my, x, y, 60, 35):
             selected_color = i
+    
+    # Check cone options
     for i in range(2):
-        if collidePointRect(mx, my, -40 + i * 80, height / 2 - 50, 70, 50):
+        x = -width / 2 + i * 120 + 60
+        if collidePointRect(mx, my, x, height / 2 + 55, 60, 35):
             selected_cone = i
 
 
