@@ -1,5 +1,5 @@
 from math import *
-timer = 15
+timer = 9
 def setup():
     size(400,400)
     
@@ -10,12 +10,12 @@ def draw():
     smileFace()
     if frame_count % 60 == 0 and timer > 0:
         timer -= 1
-    if timer <= 10 and timer > 5:
+    if timer <= 6 and timer > 3:
         shockFace()
-    if timer <= 5:
+    if timer <= 3:
         sadFace()
     if timer == 0:
-        timer = 15
+        timer = 9
         
 def smileFace():
     fill(255,255,0)
