@@ -20,7 +20,7 @@ def get_pixelLst():
     pixelLst = [[0 for y in range(height)] for x in range(width)]
     for x in range(width): 
         for y in range(height): 
-            pixelLst[x][y] = get_pixels(x,y)
+            pixelLst[x][y] = get_np_pixels(x,y)
     return pixelLst
 def setup():
     global original
@@ -28,7 +28,7 @@ def setup():
     img = load_image("./Memes/Meme3.jpg")
     img.resize(width, height)    
     image(img, 0, 0)
-    original = get_pixelLst()
+    original = np_pixels.copy()
     load_np_pixels()
 def mouse_clicked():
     temp = remap(mouse_x, 0, width, -100, 100)
