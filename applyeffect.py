@@ -1,7 +1,7 @@
 def setup():
     global filter1, original
     size(400,400)
-    img = load_image("./Memes/family1.jpg")
+    img = load_image("image.jpg")
     img.resize(width,height)
     image(img,0,0)
     load_np_pixels()
