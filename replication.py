@@ -1,13 +1,20 @@
 import numpy as np
 def setup():
+    global s
     size(200,200)
+    s = []
     background(0)
     initState()
-def changeState(x,y):
-    if(np_pixels[y,x,1] == 255):
-        np_pixels[y,x,:] = [100,0,0,0]
-    else:
-        np_pixels[y,x,:] = [100,255,0,0]
+def changeState():
+    global s
+    for i in s:
+        x = i[0]
+        y = i[1]
+        if np.array_equal(np_pixels[y,x,:], [100,255,0,0]):
+            np_pixels[y,x,:] = [100,0,0,0]
+        else:
+            np_pixels[y,x,:] = [100,255,0,0]
+    s.clear()
     update_np_pixels()
     
 def initState():
@@ -18,34 +25,28 @@ def initState():
     update_np_pixels()
     
 def checkNeighbor():
+    global s
     load_np_pixels()
     BLACK = [100,0,0,0]
     RED = [100,255,0,0]
     for x in range(width-1):
         for y in range(height-1):
             count = 0
+            if np.array_equal(np_pixels[y,x-1,:], RED):
+                count += 1
+            if np.array_equal(np_pixels[y,x+1,:],RED):
+                count += 1
+            if np.array_equal(np_pixels[y-1,x,:], RED):
+                count += 1
+            if np.array_equal(np_pixels[y+1,x,:], RED):
+                count += 1
+            
             if np.array_equal(np_pixels[y,x,:], BLACK):
-                if np.array_equal(np_pixels[y,x-1,:], RED):
-                    count += 1
-                if np.array_equal(np_pixels[y,x+1,:],RED):
-                    count += 1
-                if np.array_equal(np_pixels[y-1,x,:], RED):
-                    count += 1
-                if np.array_equal(np_pixels[y+1,x,:], RED):
-                    count += 1
-                if (count%2 == 1):
-                    changeState(x,y)
+                if count % 2 == 0:
+                    s.append([x,y])
             else:
-                if np.array_equal(np_pixels[y,x-1,:], RED):
-                    count += 1
-                if np.array_equal(np_pixels[y,x+1,:], RED):
-                    count += 1
-                if np.array_equal(np_pixels[y-1,x,:], RED):
-                    count += 1
-                if np.array_equal(np_pixels[y+1,x,:], RED):
-                    count += 1
-                if(count%2 == 0):
-                    changeState(x,y)
-    update_np_pixels()
+                if count % 2 == 1:
+                    s.append([x,y])
 def draw():
     checkNeighbor()
+    changeState()
