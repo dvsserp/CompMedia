@@ -1,6 +1,6 @@
 grid = []
 
-cell_size = 10
+cell_size = 2
 
 cols = 0
 rows = 0
@@ -35,7 +35,7 @@ def draw():
         for x in range(cols):
 
             if grid[y][x] == 1:
-                fill(255)
+                fill(0,255,0)
             else:
                 fill(0)
 
