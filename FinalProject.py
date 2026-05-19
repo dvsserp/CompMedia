@@ -1,12 +1,18 @@
+from Checker import *
 #checkers
-tile = [[]]
+board = [[]]
 def setup():
+    global board
     size(400,400)
     background(255,0,0)
-
+    initialSetup()
+    print(board)
 def draw():
+    global board
     drawTiles()
-    
+    for checker in board:
+        checker.display()
+        
 def drawTiles():
     for x in range(0,width,width//8):
         for y in range(0,height,height//8):
@@ -17,4 +23,13 @@ def drawTiles():
                 fill(0)
                 rect(x,y,width//8,height//8)
     
-    
+def initialSetup():
+    global board
+    board = [[0 for x in range(4)] for y in range(8)]
+    for x in range(0,4):
+        for y in range(0,3):
+            board[x][y] = Checker([x,y], "black")
+            
+    for x in range(5,8):
+        for y in range(0,4):
+            board[x][y] = Checker([x,y], "red")
