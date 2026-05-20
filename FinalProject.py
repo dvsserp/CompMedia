@@ -6,16 +6,17 @@ def setup():
     size(400,400)
     background(255,0,0)
     initialSetup()
-    print(board)
+    #print(board)
 def draw():
     global board
     drawTiles()
-    for x in range(0,8):
-        for y in range(0,4):
+    for x in range(0,4):
+        for y in range(0,8):
             if (board[x][y] != 0):
                 board[x][y].display()
         
 def drawTiles():
+    stroke(0);
     for x in range(0,width,width//8):
         for y in range(0,height,height//8):
             if(x % ((width//8) * 2) == 0 and y % ((height//8) * 2) == 0):
@@ -27,12 +28,12 @@ def drawTiles():
     
 def initialSetup():
     global board
-    board = [[0 for x in range(4)] for y in range(8)]
+    board = [[0 for x in range(8)] for y in range(4)]
     for x in range(0,4):
         for y in range(0,3):
             board[x][y] = Checker([x,y], "black")
             
-    for x in range(4,8):
-        for y in range(0,3):
+    for x in range(0,4):
+        for y in range(5,8):
             board[x][y] = Checker([x,y], "red")
     #print(board);
