@@ -8,11 +8,11 @@ class Checker:
         self.color = col;
     
     def display(self):
-        if(self.color == black):
+        if(self.color == "black"):
             fill(0)
         else:
             fill(255,0,0)
-        circle(self.position[0],self.position[1],30)
+        circle(self.position[0]*width//8,self.position[1]*height//8,30)
         
     def move(self, newPositionX, newPositionY):
         if(self.king):

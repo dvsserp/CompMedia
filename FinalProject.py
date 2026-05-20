@@ -10,8 +10,10 @@ def setup():
 def draw():
     global board
     drawTiles()
-    for checker in board:
-        checker.display()
+    for x in range(0,8):
+        for y in range(0,4):
+            if (board[x][y] != 0):
+                board[x][y].display()
         
 def drawTiles():
     for x in range(0,width,width//8):
@@ -30,6 +32,7 @@ def initialSetup():
         for y in range(0,3):
             board[x][y] = Checker([x,y], "black")
             
-    for x in range(5,8):
-        for y in range(0,4):
+    for x in range(4,8):
+        for y in range(0,3):
             board[x][y] = Checker([x,y], "red")
+    #print(board);
