@@ -37,3 +37,4 @@ def initialSetup():
         for y in range(5,8):
             board[x][y] = Checker([x,y], "red")
     #print(board);
+            
