@@ -1,6 +1,7 @@
 from Checker import *
 #checkers
 board = [[]]
+selected = None
 def setup():
     global board
     size(400,400)
@@ -8,12 +9,19 @@ def setup():
     initialSetup()
     #print(board)
 def draw():
-    global board
+    global board, selected
     drawTiles()
     for x in range(0,4):
         for y in range(0,8):
             if (board[x][y] != 0):
                 board[x][y].display()
+    if selected != None:
+        fill(255,255,0,150)
+        no_stroke()
+        if selected.position[1] % 2 == 0:
+            circle(selected.position[0]*width//8*2 + width//16, selected.position[1]*height//8 + height//16, 36)
+        else:
+            circle(selected.position[0]*width//8*2 + width//16 + width//8, selected.position[1]*height//8 + height//16, 36)
         
 def drawTiles():
     stroke(0);
@@ -37,4 +45,39 @@ def initialSetup():
         for y in range(5,8):
             board[x][y] = Checker([x,y], "red")
     #print(board);
+            
+def mouse_pressed():
+    global selected
+    row = mouse_y // (height // 8)
+    
+    if row % 2 == 0:
+        px = mouse_x - width // 16
+    else:
+        px = mouse_x - width // 16 - width // 8
+    
+    bx = round(px / (width // 4))
+    
+    
+    print(f"board: ({bx}, {row})")
+    
+    if selected == None:
+        # first click: select a piece
+        if board[bx][row] != 0:
+            print("selected checker")
+            selected = board[bx][row]
+    else:
+        # second click: try to move
+        if board[bx][row] == 0:
+            if selected.canMove(bx, row):
+                board[selected.position[0]][selected.position[1]] = 0
+                selected.move(bx, row)
+                board[bx][row] = selected
+                selected = None
+            else:
+                print(f"trying to move from {selected.position} to ({bx},{row})")
+                print("cannot move here")
+        else:
+            # clicked another piece, re-select
+            selected = board[bx][row]
+        
             

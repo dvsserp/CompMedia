@@ -41,22 +41,28 @@ class Checker:
                 vertex(self.position[0]*width//8 * 2 + width//16 + width//8 - 5, self.position[1]*height//8 + height//16 - 3)
                 vertex(self.position[0]*width//8 * 2 + width//16 + width//8 - 5, self.position[1]*height//8 + height//16 + 3)
                 end_shape(CLOSE)
-    def move(self, newPositionX, newPositionY):
+
+    #returns true if moving to newX, newY is a valid move 
+    def canMove(self, newPositionX, newPositionY):
         if(self.king):
-            if((self.position[0] + 1 == newPositionX or self.position[0] - 1 == newPositionX) and (self.position[1] + 1 == newPositionY or self.position[1] - 1 == newPositionY)):
-                print("moved")
-                self.position = [newPositionX, newPositionY]
+            return (self.position[0] + 1 == newPositionX or self.position[0] - 1 == newPositionX) and \
+                   (self.position[1] + 1 == newPositionY or self.position[1] - 1 == newPositionY)
         else:
-            #normal move for black
-            if (self.position[0] + 1 == newPositionX and (self.position[1] + 1 == newPositionY or self.position[1] - 1 == newPositionY) and self.color == "black"):
-                print("moved")
-                self.position = [newPositionX, newPositionY]
-            #normal move for red
-            elif (self.position[0] - 1 == newPositionX and (self.position[1] + 1 == newPositionY or self.position[1] - 1 == newPositionY) and self.color == "red"):
-                print("moved")
-                self.position = [newPositionX, newPositionY]
+            #black moves down increasing y
+            if self.color == "black":
+                return (self.position[1] + 1 == newPositionY and
+                        (self.position[0] + 1 == newPositionX or self.position[0] == newPositionX))
             else:
-                print("cannot move here")
+                #red moves up decreasing y
+                return (self.position[1] - 1 == newPositionY and
+                        (self.position[0] + 1 == newPositionX or self.position[0] == newPositionX))
+
+    def move(self, newPositionX, newPositionY):
+        if(self.canMove(newPositionX, newPositionY)):
+            print("moved")
+            self.position = [newPositionX, newPositionY]
+        else:
+            print("cannot move here")
                 
     def changeStatus(self):
         self.king = True;
