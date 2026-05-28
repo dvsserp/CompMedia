@@ -70,18 +70,33 @@ def mouse_pressed():
     else:
         # second click try to move
         if board[bx][row] == 0:
+            
             if selected.canJump(bx,row):
-                if(row % 2 == 0):
-                    #if a checker is between a canjump tile for red only (need to implement)
-                    if board[bx + 1][row - 1] != 0:
-                        print("jumpHere")
-                    elif board[bx][row - 1] != 0:
-                        print("jumpHere")
+                if selected.color == "red":
+                    if(row % 2 == 0):
+                        #if a checker is between a canjump tile for red only
+                        if board[bx - 1][row - 1] != 0:
+                            print("jumpHere")
+                        elif board[bx][row - 1] != 0:
+                            print("jumpHere")
+                    else:
+                        if board[bx - 1][row - 1] != 0:
+                            print("jumpHere")
+                        elif board[bx][row - 1] != 0:
+                            print("jumpHere")
                 else:
-                    if board[bx - 1][row - 1] != 0:
-                        print("jumpHere")
-                    elif board[bx][row - 1] != 0:
-                        print("jumpHere")
+                    if(row % 2 == 0):
+                        #if a checker is between a canjump tile for black only
+                        if (board[bx - 1][row + 1] != 0):
+                            print("jumpHere")
+                        elif board[bx][row + 1] != 0:
+                            print("jumpHere")
+                    else:
+                        if board[bx - 1][row + 1] != 0:
+                            print("jumpHere")
+                        elif board[bx][row + 1] != 0:
+                            print("jumpHere")
+                            
             elif selected.canMove(bx, row):
                 board[selected.position[0]][selected.position[1]] = 0
                 selected.move(bx, row)
