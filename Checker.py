@@ -43,6 +43,7 @@ class Checker:
                 end_shape(CLOSE)
     def move(self, newPositionX, newPositionY):
         if(self.king):
+            #king can move anywhere
             if((self.position[0] + 1 == newPositionX or self.position[0] - 1 == newPositionX) and (self.position[1] + 1 == newPositionY or self.position[1] - 1 == newPositionY)):
                 print("moved")
                 self.position = [newPositionX, newPositionY]
