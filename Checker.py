@@ -97,11 +97,7 @@ class Checker:
                         (self.position[0] - 1 == newPositionX or self.position[0] + 1 == newPositionX))
                 
     def move(self, newPositionX, newPositionY):
-        if(self.canMove(newPositionX, newPositionY)):
-            print("moved")
-            self.position = [newPositionX, newPositionY]
-        else:
-            print("cannot move here")
+        self.position = [newPositionX, newPositionY]
                 
     def changeStatus(self):
         self.king = True;

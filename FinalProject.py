@@ -46,7 +46,6 @@ def initialSetup():
         for y in range(5,8):
             board[x][y] = Checker([x,y], "red")
     #print(board);
-
             
 def mouse_pressed():
     global selected
@@ -71,36 +70,30 @@ def mouse_pressed():
         # second click try to move
         if board[bx][row] == 0:
             
-            if selected.canJump(bx,row):
-                if selected.color == "red":
-                    if(row % 2 == 0):
-                        #if a checker is between a canjump tile for red only
-                        if board[bx - 1][row - 1] != 0:
-                            print("jumpHere")
-                        elif board[bx][row - 1] != 0:
-                            print("jumpHere")
-                    else:
-                        if board[bx - 1][row - 1] != 0:
-                            print("jumpHere")
-                        elif board[bx][row - 1] != 0:
-                            print("jumpHere")
+            if selected.canJump(bx, row):
+                midX = (selected.position[0] + bx) // 2
+                midY = (selected.position[1] + row) // 2
+
+                if midY % 2 == 0:
+                    midX = max(selected.position[0], bx)
                 else:
-                    if(row % 2 == 0):
-                        #if a checker is between a canjump tile for black only
-                        if (board[bx - 1][row + 1] != 0):
-                            print("jumpHere")
-                        elif board[bx][row + 1] != 0:
-                            print("jumpHere")
-                    else:
-                        if board[bx - 1][row + 1] != 0:
-                            print("jumpHere")
-                        elif board[bx][row + 1] != 0:
-                            print("jumpHere")
+                    midX = min(selected.position[0], bx)
+                print(f"midX: {midX}, midY: {midY}")
+                print(f"midpiece: {board[midX][midY]}")
+                if board[midX][midY] != 0 and board[midX][midY].color != selected.color:
+                    print("jumping!")
+                    board[midX][midY] = 0
+                    board[selected.position[0]][selected.position[1]] = 0
+                    selected.move(bx, row)
+                    board[bx][row] = selected
+                    checkKing()
+                    selected = None
                             
             elif selected.canMove(bx, row):
                 board[selected.position[0]][selected.position[1]] = 0
                 selected.move(bx, row)
                 board[bx][row] = selected
+                checkKing()
                 selected = None
             else:
                 print(f"trying to move from {selected.position} to ({bx},{row})")
@@ -108,5 +101,13 @@ def mouse_pressed():
         else:
             # clicked another piece, re-select
             selected = board[bx][row]
-        
+            
+def checkKing():
+    for x in range(0,4):
+        for y in range(0,8):
+            if board[x][y] != 0:
+                if board[x][y].color == "black" and y == 7:
+                    board[x][y].changeStatus()
+                elif board[x][y].color == "red" and y == 0:
+                    board[x][y].changeStatus()
             
