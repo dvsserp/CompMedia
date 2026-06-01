@@ -1,6 +1,6 @@
 # PY5 IMPORTED MODE CODE
 
-#checker class
+#Skill 10
 class Checker:
     def __init__(self,position,col):
         self.position = position
@@ -16,6 +16,7 @@ class Checker:
         if(self.position[1] % 2 == 0):
             circle(self.position[0]*width//8 * 2 + width//16,self.position[1]*height//8 + height//16,30)
             if(self.king):
+                #Skill 1, Skill 3
                 fill("#FFFF00")
                 begin_shape()
                 vertex(self.position[0]*width//8 * 2 + width//16 - 5, self.position[1]*height//8 + height//16 + 3)
